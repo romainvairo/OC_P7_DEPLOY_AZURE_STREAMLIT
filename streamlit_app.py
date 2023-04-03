@@ -20,7 +20,7 @@ json_data = json.dumps({"data": [text]})
 
 headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache'}
 
-response = requests.post(sentiment_url, json=json_data, headers=headers)
+response = requests.get(sentiment_url, json=json_data, headers=headers)
 
 if response.status_code!=200:
     print('Erreur' + response.status_code)
