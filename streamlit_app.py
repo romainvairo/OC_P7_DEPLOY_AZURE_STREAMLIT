@@ -13,7 +13,7 @@ st.title("Sentiments analysis tweets BadBuzz")
 
 text = st.text_area("Écrivez ici pour savoir si votre texte a un sentiment négatif ou positif")
 
-sentiment_url = 'http://127.0.0.1:8000/predict?text=' + text
+sentiment_url = 'https://badbuzzs.azurewebsites.net/predict?text=' + text
 
 
 json_data = json.dumps({"data": [text]})
