@@ -27,7 +27,8 @@ print("value", user_input)
 response = requests.get('https://badbuzzs.azurewebsites.net/predict?text='+user_input)
 #print("response", response.json())
 resultat.append({'result':response.json()})
-st.write(pd.DataFrame(resultat))
+if resultat != []:
+    st.write(pd.DataFrame(resultat))
 
 if response.status_code!=200:
     print('Erreur' + response.status_code)
