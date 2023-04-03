@@ -24,15 +24,16 @@ if len(user_input) != 0:
 headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache'}
 
 print("value", user_input)
-response = requests.get('https://badbuzzs.azurewebsites.net/predict?text='+user_input)
-#print("response", response.json())
-resultat.append({'result':response.json()})
-if resultat != []:
-    st.write(pd.DataFrame(resultat))
+if len(user_input) != 0:
+    response = requests.get('https://badbuzzs.azurewebsites.net/predict?text='+user_input)
+    #print("response", response.json())
+    resultat.append({'result':response.json()})
+    if resultat != []:
+        st.write(pd.DataFrame(resultat))
 
-if response.status_code!=200:
-    print('Erreur' + response.status_code)
-proba = json.loads(response.text)
+    if response.status_code!=200:
+        print('Erreur' + response.status_code)
+    #proba = json.loads(response.text)
 
 # if proba["prediction"] == "Positive":
 #     st.text('Le tweet est positif, et la probabilité que ce tweet soit positif est de : ' + str(100*np.round(proba["Probability"],2)) + "%")
