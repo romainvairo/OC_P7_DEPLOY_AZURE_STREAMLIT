@@ -11,16 +11,23 @@ import requests
 
 st.title("Sentiments analysis tweets BadBuzz")
 
-text = st.text_area("Écrivez ici pour savoir si votre texte a un sentiment négatif ou positif")
-
-sentiment_url = 'https://badbuzzs.azurewebsites.net/predict?text=' + text
+#text = st.text_area("Écrivez ici pour savoir si votre texte a un sentiment négatif ou positif")
 
 
-json_data = json.dumps({"data": [text]})
+user_input = st.text_input("Écrivez ici pour savoir si votre texte a un sentiment négatif ou positif")
+
+if len(user_input) != 0:
+    st.title("Result Input - Modèle")
+    resultat = []
+
 
 headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-cache'}
 
-response = requests.get(sentiment_url, json=json_data, headers=headers)
+print("value", user_input)
+response = requests.get('https://badbuzzs.azurewebsites.net/predict?text='+user_input)
+#print("response", response.json())
+#resultat.append({'result':response.json()})
+
 
 if response.status_code!=200:
     print('Erreur' + response.status_code)
